@@ -31,6 +31,7 @@ if [ "${1}" = "clean" ]; then
 fi
 
 mkdir -p "${SWIFT_MODULE}"
+generate_swift_interface "${SWIFT_MODULE}" 'armv7-apple-ios' 'armv7-apple-ios7.0'
 generate_swift_interface "${SWIFT_MODULE}" 'arm64-apple-ios' 'arm64-apple-ios7.0'
 generate_swift_interface "${SWIFT_MODULE}" 'arm64e-apple-ios' 'arm64e-apple-ios7.0'
 
