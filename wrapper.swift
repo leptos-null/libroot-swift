@@ -2,14 +2,10 @@ import Foundation
 
 @_alwaysEmitIntoClient
 public func jbRootPath(_ cPath: UnsafePointer<CChar>?) -> String {
-    let stringElements: [String.Element] = .init(unsafeUninitializedCapacity: Int(PATH_MAX)) { buffer, initializedCount in
-        if let resolved = libroot_dyn_jbrootpath(cPath, buffer.baseAddress) {
-            initializedCount = strlen(resolved)
-        } else {
-            initializedCount = 0
-        }
-    }
-    return String(stringElements)
+    guard let resolved = libroot_dyn_jbrootpath(cPath, nil) else { return "" }
+    let result = String(cString: resolved)
+    free(resolved)
+    return result
 }
 
 // https://www.fivestars.blog/articles/disfavoredOverload/
@@ -23,14 +19,10 @@ public func jbRootPath<S: StringProtocol>(_ path: S) -> String {
 
 @_alwaysEmitIntoClient
 public func rootFsPath(_ cPath: UnsafePointer<CChar>?) -> String {
-    let stringElements: [String.Element] = .init(unsafeUninitializedCapacity: Int(PATH_MAX)) { buffer, initializedCount in
-        if let resolved = libroot_dyn_rootfspath(cPath, buffer.baseAddress) {
-            initializedCount = strlen(resolved)
-        } else {
-            initializedCount = 0
-        }
-    }
-    return String(stringElements)
+    guard let resolved = libroot_dyn_rootfspath(cPath, nil) else { return "" }
+    let result = String(cString: resolved)
+    free(resolved)
+    return result
 }
 
 // https://www.fivestars.blog/articles/disfavoredOverload/
