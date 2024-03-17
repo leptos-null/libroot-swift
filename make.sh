@@ -13,6 +13,8 @@ SWIFT_MODULE="${MODULE_NAME}.swiftmodule"
 # 2 : triple
 # 3 : target
 function generate_swift_interface {
+    # inspired by
+    # https://railsware.com/blog/creation-of-pure-swift-module/#Loggerswiftmodule
     swiftc -enable-library-evolution \
         -target "${3}" \
         -sdk "${SDK_PATH}" \
