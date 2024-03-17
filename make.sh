@@ -5,7 +5,7 @@ set -e
 SOURCE_FILE="wrapper.swift"
 MODULE_NAME="libroot"
 SWIFT_FLAGS="-I${THEOS}/vendor/include"
-SDK_PATH="${THEOS}/sdks/iPhoneOS16.5.sdk"
+SDK_PATH="$(xcrun --sdk iphoneos --show-sdk-path)"
 
 SWIFT_MODULE="${MODULE_NAME}.swiftmodule"
 
